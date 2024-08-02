@@ -58,6 +58,21 @@ func (l *LinkedList) RemoveDuplicates() {
 	}
 }
 
+func (l *LinkedList) RemoveDuplicatesNoBuffer() {
+	curr := l.head
+	for curr != nil {
+		runner := curr
+		for runner.next != nil {
+			if runner.next.val == curr.val {
+				runner.next = runner.next.next
+			} else {
+				runner = runner.next
+			}
+		}
+		curr = curr.next
+	}
+}
+
 func main(){
 	l := LinkedList{}
 	l.add(4)
@@ -70,6 +85,6 @@ func main(){
 	l.add(7)
 	
 	fmt.Println(l)
-	l.RemoveDuplicates()
+	l.RemoveDuplicatesNoBuffer()
 	fmt.Println(l)
 }
